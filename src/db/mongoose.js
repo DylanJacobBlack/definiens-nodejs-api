@@ -6,11 +6,14 @@ mongoose.connect("mongodb://127.0.0.1:27017/definiens-api");
 const User = mongoose.model("User", {
   username: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   email: {
     type: String,
     required: true,
+    trim: true,
+    lowercase: true,
     validate(value) {
       if (!validator.isEmail(value)) {
         throw new Error("Email is invalid")
@@ -26,11 +29,13 @@ const User = mongoose.model("User", {
 const lesson = mongoose.model("Lesson", {
   title: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   text: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
 });
 
